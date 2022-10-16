@@ -1,0 +1,12 @@
+/* grid template : col,row length / ratio */
+/* fr is shorthand for fraction */
+.form {
+    display: grid;
+    /* grid-template: row1Height row2Height / column1Ratio column2Ratio */
+    grid-template: 40px / 3fr 1fr;
+    gap: 20px;
+}
+.submit{
+    color:rgb(255, 255, 255);
+    background-color: rgb(108, 162, 144);
+}

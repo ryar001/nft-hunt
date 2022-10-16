@@ -1,0 +1,67 @@
+/* grid template : col,row length / ratio */
+/* fr is shorthand for fraction */
+.form {
+    display: grid;
+    /* grid-template: row1Height row2Height / column1Ratio column2Ratio */
+    grid-template: 40px/ 4.4fr 1fr;
+   
+    gap: 20px;
+}
+.metadata{
+    font-size: small;
+}
+.cards-attr{
+    text-align: center;
+    font-size: 1rem;
+    overflow: auto;
+
+}
+
+.cards-img {
+    width: 90%;
+    overflow:hidden;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+
+}
+.cards{
+    display: flex;
+    flex-direction: column;
+
+    height: 19.18rem;
+    width: 11.5rem;
+    margin-top: 0.25rem;
+    margin-right:2rem;
+    font-family: sans-serif;
+    overflow:hidden;
+    border-radius: 8px;
+
+    box-shadow:0px 0px 15px -5px ; /* H V Blurr */
+    background: linear-gradient(90deg, #282280 1.18%, #A626D3 100%);
+}
+.forms-cardArea{
+    display: flex;
+    flex-direction: row;
+   
+    margin:1rem;
+    flex-wrap: wrap;
+    /* x axis centering */
+    justify-content: center; 
+
+    
+  
+}
+.form-submit{
+    padding-top: 0.4rem;
+    background: rgba(73, 68, 68, 0.957);
+    color: #ffffff;
+}
+  
+.form-submit:hover{
+    background:#3a3a40;
+    border: 2px solid #c2f3f8;
+    color: #c2f3f8;
+    box-shadow: 0 0 15px;
+}
+
+

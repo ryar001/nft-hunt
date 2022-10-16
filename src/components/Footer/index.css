@@ -1,0 +1,39 @@
+/* 1 rem == 16px
+rem is root-em font size relative to root element
+*/
+.footer{
+
+    display: flex;
+    font-family: 'Impact';
+    font-style: normal;
+    font-size: 2rem;
+    
+    /* identical to box height */
+    margin-top: 5%;
+    padding-bottom: 0px;
+    position: relative;
+    width: 100%;
+    height:fit-content;
+    left: 0px;
+    bottom: 0px;
+    
+    color: #ac2727;
+
+    border: 2px solid #000000;
+    background: linear-gradient(90deg, #282280 1.18%, #A626D3 100%);
+}
+.footer-note{
+        display: flex;
+        align-items: center;
+        margin: auto;
+        font-family: 'Inter';
+      
+        font-weight: 500;
+        font-size: 1.25rem;
+     
+
+    
+        color: #FFFFFF;
+    
+    }
+

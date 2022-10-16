@@ -1,0 +1,94 @@
+{
+    "ClayNation7899": {
+        "asset": "40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728436c61794e6174696f6e37383939",
+        "policy_id": "40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728",
+        "asset_name": "436c61794e6174696f6e37383939",
+        "fingerprint": "asset1xkngd3y2njd3dzhfg25rtfp66gyvke6skqftxc",
+        "quantity": "1",
+        "initial_mint_tx_hash": "d7e089dce7c170f1af519fab710f9ed5d4d8680978035da5559eec6f446ded92",
+        "mint_or_burn_count": 1,
+        "onchain_metadata": {
+            "name": "Clay Nation #7899",
+            "image": "ipfs://QmdXSPVnjRMsT2LuUMW5MMAKunwjpL34WDWjSy3fQuRdie",
+            "body": "Tan Clay",
+            "eyes": "Trippy Eyes",
+            "brows": "Blue Eyebrows",
+            "mouth": "Grin",
+            "Project": "Clay Nation by Clay Mates",
+            "clothes": "Tracksuit",
+            "background": "Seafoam Green",
+            "accessories": "Silver Chain",
+            "hats and hair": "Clay Nation Hat & Mullet"
+        },
+        "metadata": null
+    },
+    "ClayNation8488": {
+        "asset": "40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728436c61794e6174696f6e38343838",
+        "policy_id": "40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728",
+        "asset_name": "436c61794e6174696f6e38343838",
+        "fingerprint": "asset14pm7d5k9xtgeu87g7skz8sqvxjkepwsysdmvcg",
+        "quantity": "1",
+        "initial_mint_tx_hash": "a5e9fb001c2a0838d380acccc90eb06f9c06c74ce94eee1482f4a5f79c5be1b1",
+        "mint_or_burn_count": 1,
+        "onchain_metadata": {
+            "name": "Clay Nation #8488",
+            "image": "ipfs://QmZfeNhctaLzmpNYAvkaoLcHR3yCvtBn44TNuULon3F987",
+            "body": "Tan Clay",
+            "eyes": "Big Eyes",
+            "brows": "Normal Eyebrows",
+            "mouth": "Joint in Mouth",
+            "Project": "Clay Nation by Clay Mates",
+            "clothes": "Tshirt Green",
+            "background": "Cyan",
+            "accessories": "No Accessories",
+            "hats and hair": "Top Hat"
+        },
+        "metadata": null
+    },
+    "ClayNation3232": {
+        "asset": "40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728436c61794e6174696f6e33323332",
+        "policy_id": "40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728",
+        "asset_name": "436c61794e6174696f6e33323332",
+        "fingerprint": "asset1lge5ddeauys6emy6mzyduumsrlslm0t6kdm4fj",
+        "quantity": "1",
+        "initial_mint_tx_hash": "befa4ce55af8c4c7691262bb3ffd07eba5c3bdfe9165f2188033921d5afcfbf6",
+        "mint_or_burn_count": 1,
+        "onchain_metadata": {
+            "name": "Clay Nation #3232",
+            "image": "ipfs://QmPG4UcamUUfjD5E92B3RMWp5gVe7hUN9ixmamcmAt2wwc",
+            "body": "White Clay",
+            "eyes": "Normal Eyes",
+            "brows": "Pierced Eyebrows",
+            "mouth": "Pipe",
+            "Project": "Clay Nation by Clay Mates",
+            "clothes": "Tshirt Green",
+            "background": "Salmon",
+            "accessories": "Silver Chain",
+            "hats and hair": "Pigtails"
+        },
+        "metadata": null
+    },
+    "ClayNation4686": {
+        "asset": "40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728436c61794e6174696f6e34363836",
+        "policy_id": "40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728",
+        "asset_name": "436c61794e6174696f6e34363836",
+        "fingerprint": "asset1qkfhyqpm08s0jrycpq3j8v809s4tlmcv3u0egg",
+        "quantity": "1",
+        "initial_mint_tx_hash": "95e3cac7afa357769932b36db07c103ff88ffd17c35e4ef62e08790d6be65e27",
+        "mint_or_burn_count": 1,
+        "onchain_metadata": {
+            "name": "Clay Nation #4686",
+            "image": "ipfs://Qmc3ebrt6rJLeGo4NpvwXkUxAD2LV2x8d8oUa14z4Ku6T1",
+            "body": "Tan Clay",
+            "eyes": "Normal Eyes",
+            "brows": "Normal Eyebrows",
+            "mouth": "Gold Tooth",
+            "Project": "Clay Nation by Clay Mates",
+            "clothes": "Tshirt Grey",
+            "background": "Turquoise",
+            "accessories": "Silver Chain",
+            "hats and hair": "Over Ear Headphones"
+        },
+        "metadata": null
+    }
+}

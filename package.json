@@ -1,0 +1,39 @@
+{
+  "name": "reactguide",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "env-cmd -f .env.staging react-scripts start",
+    "build:staging": "env-cmd -f .env.staging react-scripts build",
+    "build:production": "env-cmd -f .env.production react-scripts build",
+    "test": "vitest",
+    "coverage": "vitest --coverage",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.9",
+    "dotenv": "^16.0.3",
+    "ipfs-core": "^0.16.1",
+    "jest": "^29.2.0",
+    "lucid-cardano": "^0.6.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-search-autocomplete": "^8.0.0",
+    "sib-api-v3-sdk": "^8.4.2",
+    "vitest": "^0.24.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.1.0",
+    "@vitest/coverage-c8": "^0.24.3",
+    "vite": "^3.1.0",
+    "vitest": "^0.24.3"
+  }
+}
