@@ -26,6 +26,7 @@ export function Forms() {
     const [showCard,toggleCard]=useState(false)
     const [nftData, setData] = useState(null)
     const cloudSvc = "https://ipfs.io/ipfs/"
+    // const cloudSvc = ".ipfs.w3s.link"
     // const [nftImg,setNftImg]=useState("src/components/Navbar/assets/NaruHehe.jpeg")
     const [nftImg,setNftImg]=useState("")
     // mapping function to easily apply React to each element in the arrays
@@ -91,7 +92,7 @@ export function Forms() {
     
     async function pullData(nftName){
         // nftJson may be reqplace with blockfrost api call or will cont use with full JSONcontaining all Narus/nft set
-        var ifps
+        var ipfs
         var nft
 
         // emailAlert(nftName)
@@ -101,10 +102,10 @@ export function Forms() {
             toggleCard(true)
             // getting the ifps info for the img
             nft=nftJson[nftName]
-            ifps=nft.onchain_metadata.image
-            let i=ifps.indexOf('//')
-            ifps=ifps.slice(i+2,ifps.length)
-            let img=cloudSvc+ifps
+            ipfs=nft.onchain_metadata.image
+            let i=ipfs.indexOf('//')
+            ipfs=ipfs.slice(i+2,ipfs.length)
+            let img=cloudSvc+ipfs
             // let resp=await fetch(cloudSvc+ifps)
             // let blob=await resp.blob()
             // let reader=new FileReader()
@@ -126,7 +127,7 @@ export function Forms() {
             setNftImg(img)
             displayMetaData(nftName,nftJson)
             // displayMetaData(nftName,nftJson[nftName].onchain_metadata.attributes)
-            console.log(cloudSvc+ifps)
+            console.log(cloudSvc+ipfs)
             }
         else{
             alert(`${nftName} is not a valid NFT`)
