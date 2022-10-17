@@ -19,7 +19,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(root, 'index.html'), // set main path to src/index.html
-        about: resolve(root, 'about', 'index.html'), //set the about page to src/about/index.hmtl
+        secret: resolve(root, 'secret', 'index.html'), //set the about page to src/about/index.hmtl
         }
     }
   },

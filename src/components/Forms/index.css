@@ -59,8 +59,8 @@
   
 .form-submit:hover{
     background:#3a3a40;
-    border: 2px solid #c2f3f8;
-    color: #c2f3f8;
+    border: 0px solid #f8d9c2;
+    color: #f3ebeb;
     box-shadow: 0 0 15px;
 }
 

@@ -22,11 +22,24 @@ rem is root-em font size relative to root element
     border: 0px solid #000000;
     background: linear-gradient(90deg, #282280 1.18%, #A626D3 100%);
 }
+.hiddenButton:hover{
+    border:0.5px dotted #282280;
+    cursor: default;
+    background-color: #28228000;
+   
+}
+.hiddenButton{
+    border:0.5px dotted #282280;
+    background-color: #28228000;
+    cursor: default;
+
+    
+}
 
 .logo2 {
-    height: auto;
+    height:3rem;
     max-width: 100%;
-    border-radius: 4px;
+    border :0;
 }
 
 .navbar-connectWallet{   

@@ -1,0 +1,1 @@
+import{r as t,a as e,d as s,R as r}from"./jsx-runtime.121db88b.js";const c="/assets/someDude.0037f1c9.png";function o(){return t.exports.useState(0),e("div",{className:"App_sp",children:e("img",{src:c})})}s.createRoot(document.getElementById("root")).render(e(r.StrictMode,{children:e(o,{})}));
