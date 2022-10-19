@@ -11,8 +11,14 @@ export default class Blockchain {
     
             },
             wallet:{
-                pubKey:undefined,
+                adaBalance:undefined,
                 utxoAvail:undefined
+            },
+            chainParams:{
+                networkId:undefined
+            },
+            txParams:{
+                changeAddr:undefined
             }
             
             
