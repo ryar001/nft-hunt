@@ -1,6 +1,7 @@
 import Wallet from "@harmonicpool/cardano-wallet-interface";
 import {useState , useEffect} from "react"
 export default async function ConnectWallet(){
+    const[x,y]=useState('')
     Wallet.setBlockfrost("testnetcTmGVtySjXnAmkdtwfzgmZIP8p07CDYm")
     // let Typhon = undefined;
     // var eternl = undefined

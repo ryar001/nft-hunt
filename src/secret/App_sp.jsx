@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import someDude from "./../assets/someDude.png"
 import ConnectWallet from './ConnectWallet.jsx'
-
 export default function App_sp() {
     const [count, setCount] = useState(0)
   

@@ -5,6 +5,7 @@ import './App.css'// our styling
 import { Navbar } from "./components/Navbar/Navbar.jsx" // importing local module
 import { Footer } from "./components/Footer/Footer.jsx" // importing local module
 import { Body as Body } from "./components/Body/Body.jsx" // importing local module
+import BlockChain from "./Blockchain/BlockChain_main.jsx" //global state of blockchain related function and class
 
 import { Dice } from "./components/Dice/Dice.jsx" // importing local module
 
@@ -18,9 +19,10 @@ import { Dice } from "./components/Dice/Dice.jsx" // importing local module
 function App() {
   const [count, setCount] = useState(0)
 
+  let blockchain=BlockChain.params
   return (
     <div className="App">
-      <Navbar />
+      <Navbar Blockchain={blockchain}/>
       <Body />
       <Footer />
     </div>
