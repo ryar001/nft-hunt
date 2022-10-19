@@ -35,7 +35,7 @@ export default async function ConnectWallet(){
                     console.log(`enabling: ${Wallet.Names.Eternl}`)
                  
                     connectedWallet=Wallet.get(Wallet.Names.Eternl)
-
+g
                 }
             }
             else  { // if availble , just return the wallet, 
