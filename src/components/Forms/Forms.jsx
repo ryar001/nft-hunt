@@ -119,11 +119,11 @@ export function Forms() {
             // }
             // console.log(imageFromBase64)
             // setNftImg("src/components/Navbar/assets/NaruHehe.jpeg")
-            window.addEventListener("load", event => {
-                var image = document.querySelector('img');
-                var isLoaded = image.complete && image.naturalHeight !== 0;
-                alert(isLoaded);
-            });
+            // window.addEventListener("load", event => {
+            //     var image = document.querySelector('img');
+            //     var isLoaded = image.complete && image.naturalHeight !== 0;
+            //     alert(isLoaded);
+            // });
             setNftImg(img)
             displayMetaData(nftName,nftJson)
             // displayMetaData(nftName,nftJson[nftName].onchain_metadata.attributes)

@@ -56,3 +56,6 @@ rem is root-em font size relative to root element
     color: #FFFFFF;
 
 }
+.navbar-walletText{
+    width :fit-content
+}
