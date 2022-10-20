@@ -1,10 +1,14 @@
 import { Value }from "@emurgo/cardano-serialization-lib-asmjs"
 import {Buffer} from "buffer"
 
-export default class blockchain_utils{
+export default class Blockchain_utils{
+    
+    tryEnable(wallet){
+        try {return wallet.enable() }
+        catch (error) {console.log(error)}
+    }
     // convert lovelace (the smallest unit of ADA) to ADA
     // static it for instant initialization
-   
     lovelace2Ada(lovelace){
         return lovelace/1000000
     }
@@ -22,6 +26,7 @@ export default class blockchain_utils{
 
         } catch (err) {
             console.log(err)
+            
         }
     }
      /**

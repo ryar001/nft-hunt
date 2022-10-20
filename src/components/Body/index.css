@@ -1,35 +1,32 @@
 .body {
-    color: rgb(0, 0, 0);
-
-    top: 10rem;
-    background: linear-gradient(90deg, #000000 1.18%, #000000 100%);
-    font-family: 'Impact';
-    font-style: normal;
-    color:white ;
-    font-weight: 900;
-    font-size: 1.25rem;
-    border-radius: 10px;
+  color: rgb(0, 0, 0);
+  top: 10rem;
+  background: linear-gradient(90deg, #000000 1.18%, #000000 100%);
+  font-family: "Impact";
+  font-style: normal;
+  color: white;
+  font-weight: 900;
+  font-size: 1.25rem;
+  border-radius: 10px;
+  background-color: black;
 }
 
-.body-instructions{
-    display: flex;
-    flex-direction: column;
-    margin:1rem;
-    border: 2px solid cornflowerblue;
-    border-radius: 8px;
-    justify-content: left;
-    align-items: center;
-    padding: 0.25rem;
-    font-family: sans-serif,Verdana, Geneva, Tahoma;
-    color:white;
-    background: linear-gradient(90deg, #282280 1.18%, #A626D3 100%);
-
-
-
+.body-instructions {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  border: 2px solid cornflowerblue;
+  border-radius: 8px;
+  justify-content: left;
+  align-items: center;
+  padding: 0.25rem;
+  font-family: sans-serif, Verdana, Geneva, Tahoma;
+  color: white;
+  background: linear-gradient(90deg, #282280 1.18%, #a626d3 100%);
 }
-.body-steps{
-    display: flex;
-    flex-direction: column;
-    color: azure;
-    text-align: left;
+.body-steps {
+  display: flex;
+  flex-direction: column;
+  color: azure;
+  text-align: left;
 }
