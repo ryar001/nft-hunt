@@ -21,7 +21,7 @@ export default async function ConnectWallet(blockchain) {
 
       console.log(`enabled wallet: ${walletKey}`);
       if (injectedWallets[walletKey].isEnabled()) {
-        await injectedWallets[walletKey].enable(); // need
+        await injectedWallets[walletKey].enable(); // needed after if acct change or another acct connect
         blockchain.walletSpecs.walletIsEnabled = true;
         blockchain.wallet.adaBalance = await blockchain_utils.getBalance(
           blockchain.API
