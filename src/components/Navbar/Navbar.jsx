@@ -14,16 +14,28 @@ export function Navbar(props) {
     // change the connect wallet to ada value after state change
     // Wallet.setBlockfrost("testnetcTmGVtySjXnAmkdtwfzgmZIP8p07CDYm")
     const [walletAda,setWalletAda] = useState("Connect Wallet")
+    const [isInitialLoad,setInitialLoad]=useState(true)
     // const [walletIsEnabled,setWalletIsEnabled] = useState()
     let blockchain = props.Blockchain // using to store global state
     let blockchain_utils = new Blockchain_utils() // create utils
-    
-    
+    // if (isInitialLoad) {
+    //     connectEnabledWallet() 
+    //     setInitialLoad(false)
+    // }
     console.log(`Wallet Check: ${Object.values(props.Blockchain.walletSpecs)}`)
-    
-    // check if wallet alrdy enable on 
-    // if enabled wallet found, will return API call
 
+    // check if wallet alrdy enabled
+    // if enabled wallet found, will update with all walletSpecs 
+    // set adabalance state
+    async function connectEnabledWallet  (){
+        let enabledWallet=blockchain_utils.checkEnable()
+        if ( enabledWallet !== null ){
+                try{
+                    setWalletAda(blockchain_utils.getBalance(enabledWallet))
+                }
+                catch(error){ console.log(error)}
+            }
+    }
     async function handleWallet(){
         await ConnectWallet(blockchain) // walllet connector
         setWalletAda((blockchain_utils.lovelace2Ada(blockchain.wallet.adaBalance)).toFixed(2)+ ' ADA')
