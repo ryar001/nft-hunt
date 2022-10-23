@@ -32,15 +32,17 @@ export function Navbar(props) {
 
     // check if wallet alrdy enabled
     // if enabled wallet found, will update with all walletSpecs 
-    // set adabalance state
+    // set adaBalance state
     async function connectEnabledWallet  (){
-        let enabledWallet=blockchain_utils.checkEnable()
+        let enabledWallet = await blockchain_utils.checkEnable()
         if ( enabledWallet !== null ){
-                try{
-                    setWalletAda(blockchain_utils.getBalance(enabledWallet))
-                }
-                catch(error){ console.log(error)}
+            console.log(`enabledWalletOn1stRender: ${Object.keys(enabledWallet)}`)
+            try{
+                await ConnectWallet(blockchain)
+                setWalletAda((blockchain_utils.lovelace2Ada(blockchain.wallet.adaBalance)).toFixed(2)+ ' ADA')
             }
+            catch(error){ console.log(error)}
+        }else console.log(`No Wallet enabled on initial render`)
     }
     async function handleWallet(){
         await ConnectWallet(blockchain) // walllet connector

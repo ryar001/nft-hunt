@@ -5,31 +5,34 @@ export default async function ConnectWallet(blockchain) {
   const blockchain_utils = new Blockchain_utils();
   // Wallet.setBlockfrost("testnetcTmGVtySjXnAmkdtwfzgmZIP8p07CDYm")
   let userSelectedWallet = "eternl";
-  // console.log(Object.keys(blockchain.walletSpecs))
-
   let injectedWallets = window.cardano;
+  console.log(`userSelected: ${userSelectedWallet}`);
   for (const walletKey in injectedWallets) {
-    console.log(`currentWalletKey: {walletKey}`);
-    console.log(`userSelected: ${userSelectedWallet}`);
+    console.log(`currentWalletKey: ${walletKey}`);
     if (userSelectedWallet === walletKey) {
       console.log(`accepted wallets: ${walletKey}`);
-      //  console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
-      blockchain.API = await injectedWallets[walletKey].enable();
-      console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
-      console.log(`enabled wallet: ${walletKey}`);
-      if (injectedWallets[walletKey].isEnabled()) {
-        await injectedWallets[walletKey].enable(); // needed after if acct change or another initial first connenction
+      // console.log`isEnabled1: ${await injectedWallets[walletKey].isEnabled()}`;
+
+      // request initial wallet connection
+      // .enable() will enable wallet first
+      // if an enabled wallet is given .enable()
+      // it returns the API to call the wallet
+      if ( await injectedWallets[walletKey].isEnabled() ==  false){
+        console.log`Requesting enable wallet`
+        await injectedWallets[walletKey].enable();
+        // console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
+        console.log(`Enabled wallet: ${walletKey}`);
+      }
+      if ( await injectedWallets[walletKey].isEnabled() == true)  {
+        console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
+        blockchain.API = await injectedWallets[walletKey].enable(); 
         blockchain.walletSpecs.walletIsEnabled = true;
         blockchain.wallet.adaBalance = await blockchain_utils.getBalance(blockchain.API);
-        console.log(
-          `adaBalanceStr: ${blockchain_utils.lovelace2Ada(
-            blockchain.wallet.adaBalance
-          )} ADA`
-        );
-        blockchain.chainParams.networkId = await blockchain_utils.getNetworkId(
-          blockchain.API
-        );
-
+        console.log(`adaBalanceStr: ${blockchain_utils.lovelace2Ada(blockchain.wallet.adaBalance)} ADA`);
+        blockchain.chainParams.networkId = await blockchain_utils.getNetworkId(blockchain.API);
+        blockchain.walletSpecs.apiVersion = injectedWallets[walletKey].apiVersion;
+        blockchain.walletSpecs.name = injectedWallets[walletKey].name;
+        console.log(`walletSpecs: ${Object.values(blockchain.walletSpecs)}`);
         // future implementation
         // await getNetworkId();
         // await this.getUtxos();
@@ -39,9 +42,7 @@ export default async function ConnectWallet(blockchain) {
         // await this.getRewardAddresses();
         // await this.getUsedAddresses();
       }
-      blockchain.walletSpecs.apiVersion = injectedWallets[walletKey].apiVersion;
-      blockchain.walletSpecs.name = injectedWallets[walletKey].name;
-      console.log(`walletSpecs: ${Object.values(blockchain.walletSpecs)}`);
+      
       // blockchain.API=await window.cardano[walletKey].enable();
       // console.log(`API: ${Object.values(blockchain.API)}`)
       // console.log(`adaBalance: ${await blockchain.API.getBalance()}`)
