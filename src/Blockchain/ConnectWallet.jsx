@@ -17,15 +17,15 @@ export default async function ConnectWallet(blockchain) {
       // .enable() will enable wallet first
       // if an enabled wallet is given .enable()
       // it returns the API to call the wallet
-      if ( !await injectedWallets[walletKey].isEnabled()){
+      if ( !await injectedWallets[walletKey].isEnabled() ){
         console.log`Requesting enable wallet`
         await injectedWallets[walletKey].enable();
         // console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
         console.log(`Enabled wallet: ${walletKey}`);
       }
-      if ( await injectedWallets[walletKey].isEnabled())  {
+      if ( await injectedWallets[walletKey].isEnabled() )  {
         console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
-        blockchain.API = await injectedWallets[walletKey].enable(); 
+        blockchain.API = await injectedWallets[walletKey].enable();
         blockchain.walletSpecs.walletIsEnabled = true;
         blockchain.wallet.adaBalance = await blockchain_utils.getBalance(blockchain.API);
         console.log(`adaBalanceStr: ${blockchain_utils.lovelace2Ada(blockchain.wallet.adaBalance)} ADA`);
@@ -33,6 +33,8 @@ export default async function ConnectWallet(blockchain) {
         blockchain.walletSpecs.apiVersion = injectedWallets[walletKey].apiVersion;
         blockchain.walletSpecs.name = injectedWallets[walletKey].name;
         console.log(`walletSpecs: ${Object.values(blockchain.walletSpecs)}`);
+        console.log(`networkId: ${blockchain.chainParams.networkId}`);
+        return 1;
         // future implementation
         // await getNetworkId();
         // await this.getUtxos();
@@ -41,20 +43,6 @@ export default async function ConnectWallet(blockchain) {
         // await this.getChangeAddress();
         // await this.getRewardAddresses();
         // await this.getUsedAddresses();
-      }
-      
-      // blockchain.API=await window.cardano[walletKey].enable();
-      // console.log(`API: ${Object.values(blockchain.API)}`)
-      // console.log(`adaBalance: ${await blockchain.API.getBalance()}`)
-
-      console.log(`networkId: ${blockchain.chainParams.networkId}`);
-      return 1;
-    }
-
-    //     }
-    //    catch(err){
-    //         console.log(err)
-    //    }
-  }
+      }}}
   alert("Selected wallet not Found");
 }
