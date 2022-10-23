@@ -2,17 +2,7 @@ import { Value }from "@emurgo/cardano-serialization-lib-asmjs"
 import {Buffer} from "buffer"
 
 export default class Blockchain_utils{
-    // check if wallet alrdy enable on 
-    // if enabled wallet found, will return API call
-    connectEnabledWallet = async (func)=>{
-        let enabledWallet=this.checkEnable()
-        if ( enabledWallet !== null ){
-                try{
-                    func(this.getBalance(enabledWallet))
-                }
-                catch(error){ console.log(error)}
-            }
-    }
+    
     // check if any wallet is enable
    // return the API if enable
     async checkEnable(){

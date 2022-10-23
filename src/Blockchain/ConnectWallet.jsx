@@ -13,15 +13,12 @@ export default async function ConnectWallet(blockchain) {
     console.log(`userSelected: ${userSelectedWallet}`);
     if (userSelectedWallet === walletKey) {
       console.log(`accepted wallets: ${walletKey}`);
-      //   console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
+      //  console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
       blockchain.API = await injectedWallets[walletKey].enable();
-      console.log(
-        `isEnabled2: ${await injectedWallets[walletKey].isEnabled()}`
-      );
-
+      console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
       console.log(`enabled wallet: ${walletKey}`);
       if (injectedWallets[walletKey].isEnabled()) {
-        await injectedWallets[walletKey].enable(); // needed after if acct change or another acct connect
+        await injectedWallets[walletKey].enable(); // needed after if acct change or another initial first connenction
         blockchain.walletSpecs.walletIsEnabled = true;
         blockchain.wallet.adaBalance = await blockchain_utils.getBalance(blockchain.API);
         console.log(
