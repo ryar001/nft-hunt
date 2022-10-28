@@ -4,11 +4,13 @@ import {useState,useEffect} from "react"
 import naruHehe from './assets/NaruHehe.jpeg'
 import ConnectWallet from "../../Blockchain/ConnectWallet.jsx"
 import Blockchain_utils from "../../Blockchain/blockchain_utils.js"
-
+import DB_utils from "../../db/db_utils.js"
 // import { Blockfrost, Lucid } from "lucid-cardano" // NPM
 
 import './index.css'// our styling 
 
+// init the database functions
+const db_utils = new DB_utils()
 
 export function Navbar(props) {
     // change the connect wallet to ada value after state change
@@ -35,6 +37,8 @@ export function Navbar(props) {
             console.log(`enabledWalletOn1stRender: ${Object.keys(enabledWallet)}`)
             try{
                 await ConnectWallet(blockchain)
+                console.log(`acct addr: ${blockchain.wallet.rewardAddr}`)
+                db_utils.createNewAcct(blockchain.wallet.rewardAddr)
                 setWalletAda((blockchain_utils.lovelace2Ada(blockchain.wallet.adaBalance)).toFixed(2)+ ' ADA')
             }
             catch(error){ console.log(error)}

@@ -1,4 +1,4 @@
-import { Value }from "@emurgo/cardano-serialization-lib-asmjs"
+import { Value,Address }from "@emurgo/cardano-serialization-lib-asmjs"
 import {Buffer} from "buffer"
 
 export default class Blockchain_utils{
@@ -36,19 +36,51 @@ export default class Blockchain_utils{
 
         } catch (err) {
             console.log(err)
-            
-        }
-    }
+        }}
      /**
      * Gets the Network ID to which the wallet is connected
      * 0 = testnet
      * 1 = mainnet
      * Then writes either 0 or 1 to state
      */
-      getNetworkId = async (API) => {
+    getNetworkId = async (API) => {
         try {
             const networkId = await API.getNetworkId();
             return(networkId)
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    getChangeAddress = async (API) => {
+        try {
+            const raw = await API.getChangeAddress();
+            const changeAddress = Address.from_bytes(Buffer.from(raw, "hex")).to_bech32()
+            return changeAddress
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    getRewardAddresses = async (API) => {
+
+        try {
+            const raw = await API.getRewardAddresses();
+            const rawFirst = raw[0];
+            const rewardAddress = Address.from_bytes(Buffer.from(rawFirst, "hex")).to_bech32()
+            // console.log(rewardAddress)
+            return rewardAddress
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    getUsedAddresses = async (API) => {
+
+        try {
+            const raw = await API.getUsedAddresses();
+            const rawFirst = raw[0];
+            const usedAddress = Address.from_bytes(Buffer.from(rawFirst, "hex")).to_bech32()
+            // console.log(rewardAddress)
+            return usedAddress
 
         } catch (err) {
             console.log(err)

@@ -2,27 +2,89 @@ import React from "react"
 import "./index.css"
 import { useState, useEffect } from 'react'
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
-
 import emailAlert  from "./emailAlert.jsx"
 import Cards from "./Cards.jsx"
 import nftJson from "./../../assets/nftJson/Yummi-Universe-Naru.json"
-console.log(nftJson["Naru01156"].onchain_metadata.attributes)
+// import { BlockfrostIPFS } from '@blockfrost/blockfrost-js'
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+function getItemList() {
+    var newItems=[]
+    let i = 0
+    for (let Nftname in nftJson){
+            // console.log("N: ",Nftname)
+            newItems.push({
+                id:i,
+                name:Nftname})
+            i+=1     
+        }
+    return newItems  
+}
+
 export function Forms() {
-    // Note if set state that req prev state, use a function as input to the state-setting fcuntion instead
     const [isHover, toggleState] = useState(false)
     const [userInput,setUserInput] = useState("")
     const [showCard,toggleCard]=useState(false)
     const [nftData, setData] = useState(null)
     const cloudSvc = "https://ipfs.io/ipfs/"
+    // const IPFS = new Blockfrost.BlockFrostIPFS({
+    //     projectId:"mainnetSU8MYwzvxB1DgC6L0At8BnSzyAOlbY1K", // see: https://blockfrost.io
+    //   });
+    // IPFS.
+    // const cloudSvc = ".ipfs.w3s.link"
     // const [nftImg,setNftImg]=useState("src/components/Navbar/assets/NaruHehe.jpeg")
     const [nftImg,setNftImg]=useState("")
     // mapping function to easily apply React to each element in the arrays
     // willl be replace with props.ipfs to display he nft
     //read files
-    // function displayMetaData(data){
-    //     let tmp=Object.keys(data).map(attr=>{return <div key={attr} className='metadata'>{attr}: {data[attr]}</div>})
-    //     setData(tmp)
-    // }
+
+    ////////////////////
+    
+    const fuseOptions={ 
+        keys:["name"],
+        maxPatternLength:3               }
+    var newItems=getItemList()
+    const resultStringKeyName="name"
+    const styling={
+        height: "44px",
+        border: "1px solid #dfe1e5",
+        borderRadius: "24px",
+        backgroundColor: "white",
+        boxShadow: "rgba(32, 33, 36, 0.28) 0px 1px 6px 0px",
+        hoverBackgroundColor: "#eee",
+        color: "#212121",
+        fontSize: "16px",
+        fontFamily: "Arial",
+        iconColor: "grey",
+        lineColor: "rgb(232, 234, 237)",
+        placeholderColor: "grey",
+        clearIconMargin: '3px 14px 0 0',
+        searchIconMargin: '0 0 0 16px'
+        }
+    
+    
+        const handleOnSearch = (string, results) => {
+        // onSearch will have as the first callback parameter
+        // the string searched and for the second the results.
+        console.log("typing: ",string)
+        }
+    
+        const handleOnHover = (result) => {
+        // the item hovered
+    
+        console.log(`hover: ${result}`)
+        }
+    
+    
+        const handleOnFocus = () => {
+        console.log('Focused')
+        }
+
+
+    ////////////////////
+    // Note if set state that req prev state, use a function as input to the state-setting fcuntion instead
+    
+  
     function displayMetaData(name,data){
         
         let attrData=data[name].onchain_metadata.attributes
@@ -35,8 +97,7 @@ export function Forms() {
     
     async function pullData(nftName){
         // nftJson may be reqplace with blockfrost api call or will cont use with full JSONcontaining all Narus/nft set
-    
-        var ifps
+        var ipfs
         var nft
 
         // emailAlert(nftName)
@@ -46,32 +107,15 @@ export function Forms() {
             toggleCard(true)
             // getting the ifps info for the img
             nft=nftJson[nftName]
-            ifps=nft.onchain_metadata.image
-            let i=ifps.indexOf('//')
-            ifps=ifps.slice(i+2,ifps.length)
-            let img=cloudSvc+ifps
-            // let resp=await fetch(cloudSvc+ifps)
-            // let blob=await resp.blob()
-            // let reader=new FileReader()
-            // var imageFromBase64
-            // reader.readAsDataURL(blob)
-            // reader.onloadend =()=>{
-            //     const imgData=reader.result
-            //     // console.log(imgData)
-            //     imageFromBase64 = new Image()
-            //     imageFromBase64.src=imgData
-            // }
-            // console.log(imageFromBase64)
-            // setNftImg("src/components/Navbar/assets/NaruHehe.jpeg")
-            window.addEventListener("load", event => {
-                var image = document.querySelector('img');
-                var isLoaded = image.complete && image.naturalHeight !== 0;
-                alert(isLoaded);
-            });
+            ipfs=nft.onchain_metadata.image
+            let i=ipfs.indexOf('//')
+            ipfs=ipfs.slice(i+2,ipfs.length)
+            let img=cloudSvc+ipfs
+            IPFS.gateway
             setNftImg(img)
             displayMetaData(nftName,nftJson)
             // displayMetaData(nftName,nftJson[nftName].onchain_metadata.attributes)
-            console.log(cloudSvc+ifps)
+            console.log(cloudSvc+ipfs)
             }
         else{
             alert(`${nftName} is not a valid NFT`)
@@ -80,41 +124,9 @@ export function Forms() {
         }
         }
       
-    // first alphabet check
-    function isLetter(c) {
-        return c.toLowerCase() != c.toUpperCase();
-      }
-    
-    async function handleSubmit() {
-        var tmp
-        console.log(nftJson)
-        // if user put Naru
-        if (isLetter(userInput.substring(0, 1))) {
-            tmp=userInput.toLowerCase()
-            tmp = tmp.substring(0, 1).toUpperCase() + tmp.substring(1, tmp.length+1)  
-        }
-        else {
-            // add the 0 in front before ADDING Naru
-            // eg 1156 -> 01156 -> Naru01156
-            if (userInput.length<5){
-                let diff = 5-userInput.length
 
-                tmp=userInput
-                for (let i = 0; i < diff; i++) {
-                    tmp="0"+tmp
-                    console.log(tmp)
-                  }
-                tmp="Naru"+tmp
-                console.log(`final tmp: ${tmp}`)
-                
-            }
-            else{
-                tmp="Naru"+userInput
-            }
-        }
-        
-        setUserInput(tmp)
-        pullData(tmp) // proceed to pull meta data and attribute
+    async function handleSubmit(item) {
+        pullData(item.name) // proceed to pull meta data and attribute
     }
     function handleHover() {
         toggleState(true)
@@ -125,18 +137,24 @@ export function Forms() {
         toggleState(false)
         console.log("button off")
     }
-    async function handleText(inputText) {
-        setUserInput(inputText.target.value)
-        
-        console.log(userInput)
-    }
+ 
     return (
         <div>
             <div className="form">
-                <input type="text" placeholder="NFT name" className="input" onChange={handleText} autoComplete="off"/>
-                <button onMouseOver={handleHover} onMouseLeave={handleLeave} onClick={handleSubmit} className="form-submit">
-                    {isHover && <div className="form-mouseHoverText">Submit!</div>}
-                    {!isHover && <div className="form-mouseLeaveText">Submit!</div>}
+            <ReactSearchAutocomplete
+                items={newItems}
+                onSearch={handleOnSearch}
+                onHover={handleOnHover}
+                onSelect={handleSubmit}
+                onFocus={handleOnFocus}
+                autoFocus
+                resultStringKeyName={resultStringKeyName}
+                styling={styling}
+                fuseOptions={fuseOptions}
+              />
+                <button onMouseOver={handleHover} onMouseLeave={handleLeave} onClick={console.log("Hunt on!")} className="form-submit">
+                    {isHover && <div className="form-mouseHoverText">Hunt!</div>}
+                    {!isHover && <div className="form-mouseLeaveText">Hunt!</div>}
                 </button>
             </div>
             {<div className="forms-cardArea"> 

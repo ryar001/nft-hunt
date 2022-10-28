@@ -34,6 +34,12 @@ export default async function ConnectWallet(blockchain) {
         blockchain.walletSpecs.name = injectedWallets[walletKey].name;
         console.log(`walletSpecs: ${Object.values(blockchain.walletSpecs)}`);
         console.log(`networkId: ${blockchain.chainParams.networkId}`);
+        blockchain.wallet.usedAddr=await blockchain_utils.getUsedAddresses(blockchain.API)
+        console.log(`UsedAddr: ${ blockchain.wallet.usedAddr}`)
+        blockchain.wallet.changeAddr=await  blockchain_utils.getChangeAddress(blockchain.API)
+        console.log(`changeAddr: ${ blockchain.wallet.changeAddr}`)
+        blockchain.wallet.rewardAddr=await  blockchain_utils.getRewardAddresses(blockchain.API)
+        console.log(`rewardAddr: ${ blockchain.wallet.rewardAddr}`)
         return 1;
         // future implementation
         // await getNetworkId();

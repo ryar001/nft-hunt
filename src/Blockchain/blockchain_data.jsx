@@ -13,13 +13,16 @@ export default class Blockchain {
             },
             wallet:{
                 adaBalance:undefined,
-                utxoAvail:undefined
+                utxoAvail:undefined,
+                changeAddr:undefined,
+                usedAddr:undefined,
+                rewardAddr:undefined
             },
             chainParams:{
                 networkId:undefined
             },
             txParams:{
-                changeAddr:undefined
+                
             }
             
             

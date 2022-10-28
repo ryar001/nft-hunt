@@ -5,8 +5,13 @@ import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import emailAlert  from "./emailAlert.jsx"
 import Cards from "./Cards.jsx"
 import nftJson from "./../../assets/nftJson/Yummi-Universe-Naru.json"
+import DB_utils from "../../db/db_utils"
+// import { BlockfrostIPFS } from '@blockfrost/blockfrost-js'
 
-// get item list for autocomplete search bar
+// init the database functions
+// const db_utils = new DB_utils()
+
+ 
 function getItemList() {
     var newItems=[]
     let i = 0
@@ -26,6 +31,10 @@ export function Forms() {
     const [showCard,toggleCard]=useState(false)
     const [nftData, setData] = useState(null)
     const cloudSvc = "https://ipfs.io/ipfs/"
+    // const IPFS = new Blockfrost.BlockFrostIPFS({
+    //     projectId:"mainnetSU8MYwzvxB1DgC6L0At8BnSzyAOlbY1K", // see: https://blockfrost.io
+    //   });
+    // IPFS.
     // const cloudSvc = ".ipfs.w3s.link"
     // const [nftImg,setNftImg]=useState("src/components/Navbar/assets/NaruHehe.jpeg")
     const [nftImg,setNftImg]=useState("")
@@ -74,7 +83,9 @@ export function Forms() {
         const handleOnFocus = () => {
         console.log('Focused')
         }
-
+        const handleHunt=()=>{
+            console.log("hunt")
+        }
 
     ////////////////////
     // Note if set state that req prev state, use a function as input to the state-setting fcuntion instead
@@ -106,24 +117,7 @@ export function Forms() {
             let i=ipfs.indexOf('//')
             ipfs=ipfs.slice(i+2,ipfs.length)
             let img=cloudSvc+ipfs
-            // let resp=await fetch(cloudSvc+ifps)
-            // let blob=await resp.blob()
-            // let reader=new FileReader()
-            // var imageFromBase64
-            // reader.readAsDataURL(blob)
-            // reader.onloadend =()=>{
-            //     const imgData=reader.result
-            //     // console.log(imgData)
-            //     imageFromBase64 = new Image()
-            //     imageFromBase64.src=imgData
-            // }
-            // console.log(imageFromBase64)
-            // setNftImg("src/components/Navbar/assets/NaruHehe.jpeg")
-            // window.addEventListener("load", event => {
-            //     var image = document.querySelector('img');
-            //     var isLoaded = image.complete && image.naturalHeight !== 0;
-            //     alert(isLoaded);
-            // });
+            IPFS.gateway
             setNftImg(img)
             displayMetaData(nftName,nftJson)
             // displayMetaData(nftName,nftJson[nftName].onchain_metadata.attributes)
@@ -164,7 +158,7 @@ export function Forms() {
                 styling={styling}
                 fuseOptions={fuseOptions}
               />
-                <button onMouseOver={handleHover} onMouseLeave={handleLeave} onClick={console.log("Hunt on!")} className="form-submit">
+                <button onMouseOver={handleHover} onMouseLeave={handleLeave} onClick={handleHunt} className="form-submit">
                     {isHover && <div className="form-mouseHoverText">Hunt!</div>}
                     {!isHover && <div className="form-mouseLeaveText">Hunt!</div>}
                 </button>
