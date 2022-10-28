@@ -17,14 +17,15 @@ export default async function ConnectWallet(blockchain) {
       // .enable() will enable wallet first
       // if an enabled wallet is given .enable()
       // it returns the API to call the wallet
-      if ( !await injectedWallets[walletKey].isEnabled() ){
+      let walletEnabled = await injectedWallets[walletKey].isEnabled()
+      if ( walletEnabled ){
         console.log`Requesting enable wallet`
         await injectedWallets[walletKey].enable();
         // console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
         console.log(`Enabled wallet: ${walletKey}`);
       }
-      if ( await injectedWallets[walletKey].isEnabled() )  {
-        console.log(`isEnabled: ${await injectedWallets[walletKey].isEnabled()}`);
+      if (walletEnabled )  {
+        console.log(`isEnabled: ${walletEnabled}`);
         blockchain.API = await injectedWallets[walletKey].enable();
         blockchain.walletSpecs.walletIsEnabled = true;
         blockchain.wallet.adaBalance = await blockchain_utils.getBalance(blockchain.API);
