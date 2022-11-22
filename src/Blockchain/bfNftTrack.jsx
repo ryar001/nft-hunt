@@ -14,11 +14,20 @@ const bfNftTrack = async (project_id,asset="b1814c6d3b0f7a42c9ee990c06c9d504a42b
     const API = tmp.blockfrostAPI
     const assetAddress = await API(`assets/${asset}/addresses`).then((resp)=>resp[0].address) // look for the NFT is located
     let assetStakeAddr = await API(`addresses/${assetAddress}`).then((resp)=>resp.stake_address)//get the located nft stakeKey
-    let addresses = await API(`accounts/${assetStakeAddr}/addresses`)//get the located nft stakeKey
-
-    console.log(`assetAddr : ${assetAddress}`)
-    console.log(`assetStakeAddr : ${assetStakeAddr}`)
-    console.log(`addresses with stakeKey: ${Object.keys(addresses[0])}`)
+    // let addresses = await API(`accounts/${assetStakeAddr}/addresses`)//get the located nft stakeKey
+    if (assetStakeAddr == null){
+        console.log('no stake addr')
+        console.log(`Asset currently at: ${assetAddress}`)
+    }else{
+        if (assetStakeAddr == marketStakeKey){
+            console.log("Asset is on the Market!!")
+        }else{
+            console.log(`Asset currently at: ${assetAddress}`)
+        }
+    }
+    // console.log(`assetAddr : ${assetAddress}`)
+    // console.log(`assetStakeAddr : ${assetStakeAddr}`)
+    // console.log(`addresses with stakeKey: ${(addresses.flat())}`)
     }
 
 export default bfNftTrack;
