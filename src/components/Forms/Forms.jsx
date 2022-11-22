@@ -5,7 +5,11 @@ import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import emailAlert  from "./emailAlert.jsx"
 import Cards from "./Cards.jsx"
 import nftJson from "./../../assets/nftJson/Yummi-Universe-Naru.json"
-// import bf from "@blockfrost/blockfrost-js"
+import bfNftTrack from "./../../Blockchain/bfNftTrack.jsx"
+
+// project_id auth required for block frost
+const project_id = import.meta.env.VITE_PROJECT_ID 
+
 // get item list for autocomplete search bar
 function getItemList() {
     var newItems=[]
@@ -58,22 +62,40 @@ export function Forms() {
         }
     
     
-        const handleOnSearch = (string, results) => {
-        // onSearch will have as the first callback parameter
-        // the string searched and for the second the results.
-        console.log("typing: ",string)
-        }
-    
-        const handleOnHover = (result) => {
-        // the item hovered
-    
-        console.log(`hover: ${result}`)
-        }
-    
-    
-        const handleOnFocus = () => {
-        console.log('Focused')
-        }
+    const handleOnSearch = (string, results) => {
+    // onSearch will have as the first callback parameter
+    // the string searched and for the second the results.
+    console.log("typing: ",string)
+    }
+
+    const handleOnHover = (result) => {
+    // the item hovered
+
+    console.log(`hover: ${result}`)
+    }
+
+
+    const handleOnFocus = () => {
+    console.log('Focused')
+    }
+    async function handleSubmit(item) {
+        pullData(item.name) // proceed to pull meta data and attribute
+    }
+    function handleHover() {
+        toggleState(true)
+        console.log("button on")
+
+    }
+    function handleLeave() {
+        toggleState(false)
+        console.log("button off")
+    }
+
+    const handleHunt = async ()=>{
+        console.log(`Fproj_id: ${project_id}`)
+        console.log(import.meta.env.VITE_PROJECT_ID)
+        bfNftTrack(project_id)
+    }    
 
 
     ////////////////////
@@ -137,18 +159,7 @@ export function Forms() {
         }
       
 
-    async function handleSubmit(item) {
-        pullData(item.name) // proceed to pull meta data and attribute
-    }
-    function handleHover() {
-        toggleState(true)
-        console.log("button on")
-
-    }
-    function handleLeave() {
-        toggleState(false)
-        console.log("button off")
-    }
+    
  
     return (
         <div>
@@ -164,7 +175,7 @@ export function Forms() {
                 styling={styling}
                 fuseOptions={fuseOptions}
               />
-                <button onMouseOver={handleHover} onMouseLeave={handleLeave} onClick={console.log("Hunt on!")} className="form-submit">
+                <button onMouseOver={handleHover} onMouseLeave={handleLeave} onClick={handleHunt} className="form-submit">
                     {isHover && <div className="form-mouseHoverText">Hunt!</div>}
                     {!isHover && <div className="form-mouseLeaveText">Hunt!</div>}
                 </button>
