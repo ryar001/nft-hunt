@@ -18,7 +18,7 @@ const bfNftTrack = async (project_id,asset="b1814c6d3b0f7a42c9ee990c06c9d504a42b
 
     console.log(`assetAddr : ${assetAddress}`)
     console.log(`assetStakeAddr : ${assetStakeAddr}`)
-    console.log(`addresses with stakeKey: ${addresses[0]}`)
+    console.log(`addresses with stakeKey: ${Object.keys(addresses[0])}`)
     }
 
 export default bfNftTrack;
