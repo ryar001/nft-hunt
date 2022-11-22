@@ -7,8 +7,10 @@ import Cards from "./Cards.jsx"
 import nftJson from "./../../assets/nftJson/Yummi-Universe-Naru.json"
 import bfNftTrack from "./../../Blockchain/bfNftTrack.jsx"
 
+
+
 // project_id auth required for block frost
-const project_id = import.meta.env.VITE_PROJECT_ID 
+const project_id = import.meta.env.VITE_PROJECT_ID
 
 // get item list for autocomplete search bar
 function getItemList() {
@@ -92,9 +94,8 @@ export function Forms() {
     }
 
     const handleHunt = async ()=>{
-        console.log(`Fproj_id: ${project_id}`)
-        console.log(import.meta.env.VITE_PROJECT_ID)
-        bfNftTrack(project_id)
+        console.log(`Fproj_id: ${Object.values(project_id)}`)
+        bfNftTrack()
     }    
 
 
