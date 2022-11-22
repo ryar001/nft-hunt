@@ -10,7 +10,9 @@ import bfNftTrack from "./../../Blockchain/bfNftTrack.jsx"
 
 
 // project_id auth required for block frost
-const project_id = import.meta.env.VITE_PROJECT_ID
+// const project_id = import.meta.env.VITE_PROJECT_ID
+const project_id = "mainnetSU8MYwzvxB1DgC6L0At8BnSzyAOlbY1K"
+
 
 // get item list for autocomplete search bar
 function getItemList() {
@@ -28,10 +30,10 @@ function getItemList() {
 
 export function Forms() {
     const [isHover, toggleState] = useState(false)
-    const [userInput,setUserInput] = useState("")
+    const [asset,setAsset] = useState("b1814c6d3b0f7a42c9ee990c06c9d504a42bb22bf0e34e7908ae21b24e6172753031313536")
     const [showCard,toggleCard]=useState(false)
     const [nftData, setData] = useState(null)
-    const cloudSvc = "https://ipfs.io/ipfs/"
+    const cloudSvc = "https://cloudflare-ipfs.com/ipfs/"
     // const cloudSvc = ".ipfs.w3s.link"
     // const [nftImg,setNftImg]=useState("src/components/Navbar/assets/NaruHehe.jpeg")
     const [nftImg,setNftImg]=useState("")
@@ -94,8 +96,8 @@ export function Forms() {
     }
 
     const handleHunt = async ()=>{
-        console.log(`Fproj_id: ${Object.values(project_id)}`)
-        bfNftTrack()
+        console.log(`Fproj_id: ${project_id}`)
+        bfNftTrack(project_id,asset)
     }    
 
 
@@ -125,31 +127,14 @@ export function Forms() {
             toggleCard(true)
             // getting the ifps info for the img
             nft=nftJson[nftName]
+            setAsset(nft.asset) // get the asset full name = policyID+assetName 
             ipfs=nft.onchain_metadata.image
             let i=ipfs.indexOf('//')
             ipfs=ipfs.slice(i+2,ipfs.length)
             let img=cloudSvc+ipfs
-            // let resp=await fetch(cloudSvc+ifps)
-            // let blob=await resp.blob()
-            // let reader=new FileReader()
-            // var imageFromBase64
-            // reader.readAsDataURL(blob)
-            // reader.onloadend =()=>{
-            //     const imgData=reader.result
-            //     // console.log(imgData)
-            //     imageFromBase64 = new Image()
-            //     imageFromBase64.src=imgData
-            // }
-            // console.log(imageFromBase64)
-            // setNftImg("src/components/Navbar/assets/NaruHehe.jpeg")
-            // window.addEventListener("load", event => {
-            //     var image = document.querySelector('img');
-            //     var isLoaded = image.complete && image.naturalHeight !== 0;
-            //     alert(isLoaded);
-            // });
+   
             setNftImg(img)
             displayMetaData(nftName,nftJson)
-            // displayMetaData(nftName,nftJson[nftName].onchain_metadata.attributes)
             console.log(cloudSvc+ipfs)
             }
         else{
