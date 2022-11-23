@@ -5,13 +5,8 @@ import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import emailAlert  from "./emailAlert.jsx"
 import Cards from "./Cards.jsx"
 import nftJson from "./../../assets/nftJson/Yummi-Universe-Naru.json"
-import DB_utils from "../../db/db_utils"
-// import { BlockfrostIPFS } from '@blockfrost/blockfrost-js'
-
-// init the database functions
-// const db_utils = new DB_utils()
-
- 
+// import bf from "@blockfrost/blockfrost-js"
+// get item list for autocomplete search bar
 function getItemList() {
     var newItems=[]
     let i = 0
