@@ -1,6 +1,11 @@
 import React from "react"
 // import Math from "math"
 import {useState,useEffect} from "react"
+import { useNavigate,redirect } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Link
+  } from "react-router-dom";
 import naruHehe from './assets/NaruHehe.jpeg'
 import ConnectWallet from "../../Blockchain/ConnectWallet.jsx"
 import Blockchain_utils from "../../Blockchain/blockchain_utils.js"
@@ -11,9 +16,16 @@ import './index.css'// our styling
 
 
 export function Navbar(props) {
+
+
+    // function routeChange(){ 
+    //   let path = "/secret/index.html"; 
+    //   useNavigate(path);
+    // } 
     // change the connect wallet to ada value after state change
     // Wallet.setBlockfrost("testnetcTmGVtySjXnAmkdtwfzgmZIP8p07CDYm")
     const [walletAda,setWalletAda] = useState("Connect Wallet")
+    const [walletConnected,setWalletConnected] = useState(false)
     // const [isInitialLoad,setInitialLoad]=useState(true)
     // const [walletIsEnabled,setWalletIsEnabled] = useState()
     let blockchain = props.Blockchain // using to store global state
@@ -39,6 +51,7 @@ export function Navbar(props) {
             console.log(`enabledWalletOn1stRender: ${Object.keys(enabledWallet)}`)
             try{
                 await ConnectWallet(blockchain)
+                setWalletConnected(true)
                 setWalletAda((blockchain_utils.lovelace2Ada(blockchain.wallet.adaBalance)).toFixed(2)+ ' ADA')
             }
             catch(error){ console.log(error)}
@@ -51,12 +64,21 @@ export function Navbar(props) {
     //  Wallet.setBlockfrost("testnetcTmGVtySjXnAmkdtwfzgmZIP8p07CDYm")
     return (
         <nav className="navbar">
-            <a href="/secret/index.html">
-            <button className="hiddenButton"  ><img src={naruHehe} className='logo2' /></button>
-            </a>
-            <button className='navbar-connectWallet'  onClick={handleWallet}> 
-               {walletAda} 
-            </button>
+
+                <a href="/secret/index.html">
+                <button className="hiddenButton"  ><img src={naruHehe} className='logo2' /></button>
+                </a>
+                {/* {walletConnected&&<a href="/secret/index.html"><button className="navbar-setting" > SETTINGS </button></a>} */}
+                
+                {!walletConnected&&<button className='navbar-connectWallet'  onClick={handleWallet}> 
+                {walletAda} 
+                </button>}
+                {walletConnected&&<Link to={{
+                    pathname:"/ProfilePage/index.html",
+                    state:blockchain}} ><button className='navbar-connectWallet' > 
+                {walletAda} 
+                </button></Link>}
+    
         </nav>
     )
 }

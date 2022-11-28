@@ -17,10 +17,7 @@ import { Dice } from "./components/Dice/Dice.jsx" // importing local module
 
 
 function App() {
-  const [count, setCount] = useState(0)
-
   let blockchain=Blockchain.params
-  // let blockchain="ad"
   return (
     <div className="App">
       <Navbar Blockchain={blockchain}/>

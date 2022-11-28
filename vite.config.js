@@ -20,6 +20,7 @@ export default defineConfig({
       input: {
         main: resolve(root, 'index.html'), // set main path to src/index.html
         secret: resolve(root, 'secret', 'index.html'), //set the about page to src/about/index.hmtl
+        profilePage: resolve(root, 'ProfilePage', 'index.html'), //set the about page to src/about/index.hmtl
         }
     }
   },
