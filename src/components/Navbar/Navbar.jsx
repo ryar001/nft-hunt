@@ -73,11 +73,9 @@ export function Navbar(props) {
                 {!walletConnected&&<button className='navbar-connectWallet'  onClick={handleWallet}> 
                 {walletAda} 
                 </button>}
-                {walletConnected&&<Link to={{
-                    pathname:"/ProfilePage/index.html",
-                    state:blockchain}} ><button className='navbar-connectWallet' > 
+                {walletConnected&&<a href="/secret"><button className='navbar-connectWallet' > 
                 {walletAda} 
-                </button></Link>}
+                </button></a>}
     
         </nav>
     )

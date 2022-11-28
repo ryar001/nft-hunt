@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import './App.css'// our styling
-import {
-  Routes,
-  Route} from 'react-router-dom'
+
 // NOte for importing Named export (not export default, need to put in {})
-import Home from './Home.jsx'
-import Secret from './secret/App_sp.jsx'
+import { Navbar } from "./components/Navbar/Navbar.jsx" // importing local module
+import { Footer } from "./components/Footer/Footer.jsx" // importing local module
+import { Body as Body } from "./components/Body/Body.jsx" // importing local module
 import Blockchain from "./Blockchain/Blockchain_data.jsx" //global state of blockchain related function and class
+
+import { Dice } from "./components/Dice/Dice.jsx" // importing local module
 
 // making a Component
 // similar to function
@@ -18,10 +19,11 @@ import Blockchain from "./Blockchain/Blockchain_data.jsx" //global state of bloc
 function App() {
   let blockchain=Blockchain.params
   return (
-    <Routes className="App">
-      <Route path="/" element={<Home blockchain={blockchain}/>} />
-      <Route path="/secret" element={<Secret blockchain={blockchain}/>} />
-    </Routes>
+    <div className="App">
+      <Navbar Blockchain={blockchain}/>
+      <Body /> 
+      <Footer />
+    </div>
   )
 }
 
