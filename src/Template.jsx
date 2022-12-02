@@ -5,7 +5,7 @@ import './App.css'// our styling
 import { Navbar } from "./components/Navbar/Navbar.jsx" // importing local module
 import { Footer } from "./components/Footer/Footer.jsx" // importing local module
 import { Body as Body } from "./components/Body/Body.jsx" // importing local module
-import Blockchain from "./Blockchain/Blockchain_data.jsx" //global state of blockchain related function and class
+// import Blockchain from "./Blockchain/Blockchain_data.jsx" //global state of blockchain related function and class
 import {Link, Outlet} from "react-router-dom"
 import { Dice } from "./components/Dice/Dice.jsx" // importing local module
 
@@ -16,13 +16,24 @@ import { Dice } from "./components/Dice/Dice.jsx" // importing local module
 //{JScode}
 
 
-function Home() {
-  let blockchain=Blockchain.params
+function Template({blockchain}) {
+  // let blockchain=Blockchain.params
+  useEffect(
+    ()=> {
+      console.log(`blockchain: `)
+      console.log(Object.keys(blockchain))
+ 
+    }
+  )
   return (
-    <div className="App">
-        <Body /> 
-    </div>
+    <>
+      <Navbar Blockchain={blockchain}/>
+      
+      <Outlet/>
+      <Footer/>
+    </>
+      
   )
 }
 
-export default Home
+export default Template

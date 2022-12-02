@@ -16,13 +16,19 @@ import { Dice } from "./components/Dice/Dice.jsx" // importing local module
 //{JScode}
 
 
-function Home() {
+function App() {
   let blockchain=Blockchain.params
   return (
     <div className="App">
+      <Navbar Blockchain={blockchain}/>
+      <>
         <Body /> 
+    
+      </>
+      
+      <Footer />
     </div>
   )
 }
 
-export default Home
+export default App

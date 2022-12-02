@@ -35,9 +35,9 @@
     "lucid-cardano": "^0.6.6",
     "next": "^12.3.1",
     "process": "^0.11.10",
-    
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "react-hook-form": "^7.40.0",
     "react-router-dom": "^6.4.3",
     "react-search-autocomplete": "^8.0.0",
     "sib-api-v3-sdk": "^8.4.2",
@@ -55,5 +55,5 @@
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
- }
+  }
 }

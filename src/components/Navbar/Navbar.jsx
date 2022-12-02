@@ -4,11 +4,14 @@ import {useState,useEffect} from "react"
 import { useNavigate,redirect } from "react-router-dom";
 import {
     BrowserRouter as Router,
-    Link
+    Link,
+    Outlet
   } from "react-router-dom";
 import naruHehe from './assets/NaruHehe.jpeg'
 import ConnectWallet from "../../Blockchain/ConnectWallet.jsx"
 import Blockchain_utils from "../../Blockchain/blockchain_utils.js"
+import ProfilePage from "./../../ProfilePage/App_ProfilePage.jsx"
+
 
 // import { Blockfrost, Lucid } from "lucid-cardano" // NPM
 
@@ -26,6 +29,7 @@ export function Navbar(props) {
     // Wallet.setBlockfrost("testnetcTmGVtySjXnAmkdtwfzgmZIP8p07CDYm")
     const [walletAda,setWalletAda] = useState("Connect Wallet")
     const [walletConnected,setWalletConnected] = useState(false)
+    const [currentPathname,setCurrentPathname]=useState("/")
     // const [isInitialLoad,setInitialLoad]=useState(true)
     // const [walletIsEnabled,setWalletIsEnabled] = useState()
     let blockchain = props.Blockchain // using to store global state
@@ -33,13 +37,26 @@ export function Navbar(props) {
     // setInitialLoad(true)
     let isInitialLoad=true
     useEffect(  ()=>{if (isInitialLoad) {
+        setCurrentPathname(window.location.pathname)
         async function initialWalletLoad() {await connectEnabledWallet() }
         initialWalletLoad()
         console.log(`1st render`)
         isInitialLoad=false
 
-        }}
+        }
+        else{ setCurrentPathname(window.location.pathname)}
+        console.log(`current Path: ${window.location.pathname}`)
+        console.log(`Home Path?: ${window.location.pathname==='/'}`)
+    }
     ,[isInitialLoad])
+    useEffect(  ()=>{ 
+        setCurrentPathname(window.location.pathname)
+
+        
+        console.log(`current Path: ${window.location.pathname}`)
+        console.log(`Home Path?: ${window.location.pathname==='/'}`)
+    }
+    ,[currentPathname])
     console.log(`Wallet Check: ${Object.values(props.Blockchain.walletSpecs)}`)
 
     // check if wallet alrdy enabled
@@ -61,21 +78,29 @@ export function Navbar(props) {
         await ConnectWallet(blockchain) // walllet connector
         setWalletAda((blockchain_utils.lovelace2Ada(blockchain.wallet.adaBalance)).toFixed(2)+ ' ADA')
     }
-    //  Wallet.setBlockfrost("testnetcTmGVtySjXnAmkdtwfzgmZIP8p07CDYm")
+    const handleLogoClick = ()=>{
+        
+        console.log(`onclick : ${window.location.pathname}`)
+        console.log(`Home Path?: ${window.location.pathname==='/'}`)
+    }
+    
     return (
+    
         <nav className="navbar">
 
-                <a href="/secret/index.html">
-                <button className="hiddenButton"  ><img src={naruHehe} className='logo2' /></button>
-                </a>
-                {/* {walletConnected&&<a href="/secret/index.html"><button className="navbar-setting" > SETTINGS </button></a>} */}
+                { <Link to="/" >
+                    <button className="hiddenButton"  onClick={handleLogoClick}><img src={naruHehe} className='logo2' /></button>
+                </Link>}
                 
                 {!walletConnected&&<button className='navbar-connectWallet'  onClick={handleWallet}> 
-                {walletAda} 
+                    {walletAda} 
                 </button>}
-                {walletConnected&&<a href="/secret"><button className='navbar-connectWallet' > 
-                {walletAda} 
-                </button></a>}
+
+                {walletConnected&&<Link to="/profilepage"> 
+                    <button className='navbar-connectWallet' onClick={handleLogoClick}> 
+                        {walletAda} 
+                    </button>
+                </Link>}
     
         </nav>
     )
