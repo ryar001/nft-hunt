@@ -2,7 +2,44 @@
 .App_ProfilePage{
     display: flex;
     color: azure;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    gap: 0.5rem;
+    
 }
-.profilePageForm{
-    color: red;
+.profilePageForm {
+    display: flex;
+    
+    gap: 0.5rem;
+    width :30rem;
+    height:2.5rem
+}
+
+.profilePageTextInput{
+    flex-grow: 2;
+    border-radius: 0.5rem;
+    border-color: #f3ebeb;
+}
+.profilePageSubmit{
+    flex-grow: 1;
+    border-radius: 0.5rem;
+    border-color: #f3ebeb;
+    cursor: pointer;
+}
+
+.profilePageInstruction{
+    width: 30rem;
+    font-weight: 900;
+    font-size: 1.25rem;
+
+    border: 2px solid cornflowerblue;
+    border-radius: 8px;
+    justify-content: left;
+    align-items: center;
+    padding: 0.25rem;
+    font-family: sans-serif, Verdana, Geneva, Tahoma;
+    color: white;
+    background: linear-gradient(90deg, #282280 1.18%, #a626d3 100%);
+    
 }

@@ -37,26 +37,16 @@ export function Navbar(props) {
     // setInitialLoad(true)
     let isInitialLoad=true
     useEffect(  ()=>{if (isInitialLoad) {
-        setCurrentPathname(window.location.pathname)
+        console.log(`1st render`)
         async function initialWalletLoad() {await connectEnabledWallet() }
         initialWalletLoad()
-        console.log(`1st render`)
         isInitialLoad=false
 
         }
-        else{ setCurrentPathname(window.location.pathname)}
-        console.log(`current Path: ${window.location.pathname}`)
-        console.log(`Home Path?: ${window.location.pathname==='/'}`)
+       
     }
     ,[isInitialLoad])
-    useEffect(  ()=>{ 
-        setCurrentPathname(window.location.pathname)
-
-        
-        console.log(`current Path: ${window.location.pathname}`)
-        console.log(`Home Path?: ${window.location.pathname==='/'}`)
-    }
-    ,[currentPathname])
+   
     console.log(`Wallet Check: ${Object.values(props.Blockchain.walletSpecs)}`)
 
     // check if wallet alrdy enabled
@@ -65,11 +55,13 @@ export function Navbar(props) {
     async function connectEnabledWallet  (){
         let enabledWallet = await blockchain_utils.checkEnable()
         if ( enabledWallet !== null ){
-            console.log(`enabledWalletOn1stRender: ${Object.keys(enabledWallet)}`)
+            // console.log(`enabledWalletOn1stRender: ${Object.keys(enabledWallet)}`)
             try{
                 await ConnectWallet(blockchain)
                 setWalletConnected(true)
                 setWalletAda((blockchain_utils.lovelace2Ada(blockchain.wallet.adaBalance)).toFixed(2)+ ' ADA')
+                console.log(`connectEnabledWallet: `)
+                console.log(blockchain)
             }
             catch(error){ console.log(error)}
         }else console.log(`No Wallet enabled on initial render`)

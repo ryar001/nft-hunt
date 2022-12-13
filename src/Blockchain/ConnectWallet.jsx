@@ -33,6 +33,8 @@ export default async function ConnectWallet(blockchain) {
         blockchain.walletSpecs.apiVersion = injectedWallets[walletKey].apiVersion;
         blockchain.walletSpecs.name = injectedWallets[walletKey].name;
         console.log(`walletSpecs: ${Object.values(blockchain.walletSpecs)}`);
+        blockchain.txParams.changeAddr=await blockchain.API.getChangeAddress()
+        console.log(`changeAddr: ${(blockchain.txParams.changeAddr)}`);
         // future implementation
         // await getNetworkId();
         // await this.getUtxos();
